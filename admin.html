@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin panel — Sensorika</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Admin panel</a>
+        <div id="authBtn"></div>
+    </div>
+</nav>
+
+<div class="container mt-4" style="max-width:800px;">
+    <h2>O'quvchi qo'shish</h2>
+    <div id="error" class="alert alert-danger d-none"></div>
+    <div id="success" class="alert alert-success d-none"></div>
+
+    <div class="mb-3">
+        <label class="form-label">Ism Familiya</label>
+        <input id="fio" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Kurs</label>
+        <select id="kurs" class="form-select">
+            <option value="" selected>— Kursni tanlang —</option>
+            <option value="Frontend Dasturlash">Frontend Dasturlash</option>
+            <option value="Kompyuter Savodxonligi">Kompyuter Savodxonligi</option>
+            <option value="Prompt Engineering">Prompt Engineering</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Guruh</label>
+        <select id="group" class="form-select">
+            <option value="" selected>— Guruhni tanlang —</option>
+            <option value="Kompyuter savodxonligi kursi bitiruvchisi">Kompyuter savodxonligi kursi bitiruvchisi</option>
+            <option value="Frontend dasturlash kursi bitiruvchisi">Frontend dasturlash kursi bitiruvchisi</option>
+            <option value="Prompt engineering">Prompt engineering</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Rasm URL (small)</label>
+        <input id="rasm" class="form-control" placeholder="thumbnail url" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Tiniq rasm URL (large)</label>
+        <input id="tiniq" class="form-control" placeholder="large image url" />
+    </div>
+
+    <button id="addBtn" class="btn btn-primary">Qo'shish</button>
+    <button id="cancelEdit" class="btn btn-secondary ms-2 d-none">Bekor qilish</button>
+    <a href="index.html" class="btn btn-secondary ms-2">Orqaga</a>
+
+    <hr class="my-4" />
+    <h3>Yangi foydalanuvchi yaratish</h3>
+    <div id="userError" class="alert alert-danger d-none"></div>
+    <div id="userSuccess" class="alert alert-success d-none"></div>
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <label class="form-label">Ism (ixtiyoriy)</label>
+            <input id="newName" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Username</label>
+            <input id="newUsername" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Parol</label>
+            <input id="newPassword" type="password" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Role</label>
+            <select id="newRole" class="form-select">
+                <option value="o'quvchi">o'quvchi</option>
+                <option value="ustoz">ustoz</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button id="createUserBtn" class="btn btn-success">Foydalanuvchi yaratish</button>
+        </div>
+    </div>
+    <h3>O'quvchilar ro'yxati</h3>
+    <div class="table-responsive">
+        <table class="table table-striped" id="studentsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ism</th>
+                    <th>Kurs</th>
+                    <th>Guruh</th>
+                    <th>Amallar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- populated by admin.js -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="database.js"></script>
+<script src="storage.js"></script>
+<script src="auth.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

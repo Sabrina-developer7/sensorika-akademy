@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'quvchi sahifasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="ism display-1 fw-bolder mt-5"></h1>
+        <div class="row mt-5 align-items-center">
+            <img class="col-6" width="500" height="600" style="object-fit:cover; border-radius:12px;" src="" alt="">
+            <p class="col-6 kurs display-3"></p>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+    <script src="storage.js"></script>
+    <script>
+        // Auth tekshiruvi — kirmagan bo'lsa singIn ga yuborish
+        if (!localStorage.getItem("username")) {
+            window.location.href = "singIn.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let urlParams = new URLSearchParams(window.location.search);
+            let id = urlParams.get("id");
+
+            let student = Students.find(i => i.id == id);
+
+            if (!student) {
+                document.body.innerHTML = "<div class='container mt-5'><h2>O'quvchi topilmadi</h2><a href='index.html' class='btn btn-primary mt-3'>Orqaga</a></div>";
+                return;
+            }
+
+            document.querySelector(".ism").innerHTML = student.fio;
+            document.querySelector(".kurs").innerHTML = student.kurs;
+            document.querySelector("img").src = student.tiniq;
+        });
+    </script>
+</body>
+</html>
